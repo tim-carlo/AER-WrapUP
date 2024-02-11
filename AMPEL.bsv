@@ -17,9 +17,7 @@ module mkAmpel(AmpelIf);
     Array#(Reg#(PedestrianState)) pedestrian_state <- mkCReg(2, PRed);
     Array#(Reg#(Bool)) pedestrian_request <- mkCReg(2, False);
     Reg#(UInt#(8)) idle_counter <- mkRegU;
-
     Reg#(Bool) startetFSM <- mkReg(False);
-
     Reg#(Bool) handeldRequest <- mkReg(False);
 
     Stmt s = seq

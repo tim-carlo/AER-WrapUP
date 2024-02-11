@@ -43,7 +43,6 @@ package CalcUnitFSM;
                 adder.request.put(tuple2(multresult, 16));
             endaction
             action
-                
                 let addresult <- adder.response.get();
                 $display("sqrt %d" , addresult);
                 sqrt.request.put(addresult);

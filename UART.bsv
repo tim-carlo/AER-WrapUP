@@ -44,7 +44,6 @@ package UART;
                 counter <= counter + 1;
             end else begin
                 counter <= 0;
-                
                 if(pointer == 7) begin
                     states <= FINISH;
                     pinData[0] <= 1;
@@ -66,6 +65,7 @@ package UART;
                 pointer <= 0;
                 currentData <= 0;
                 states <= IDLE;
+                pinData[0] <= 1;
             end
         endrule
 
