@@ -26,7 +26,7 @@ package UART;
             states <= GOTDATA;
             pinData[0] <= 0;
             currentData <= data;
-            counter <= 1;
+            counter <= 0;
             
         endrule
 
@@ -34,7 +34,7 @@ package UART;
             if(counter < fromInteger(ticks)) begin
                 counter <= counter + 1;
             end else begin
-                counter <= 1;
+                counter <= 0;
                 states <= TRANSFER;
                 pinData[0] <= currentData[pointer];
             end
@@ -43,7 +43,7 @@ package UART;
             if(counter < fromInteger(ticks)) begin
                 counter <= counter + 1;
             end else begin
-                counter <= 1;
+                counter <= 0;
                 let pointerplus1 = pointer + 1;
                 pinData[0] <= currentData[pointerplus1];
                 pointer <= pointerplus1;
