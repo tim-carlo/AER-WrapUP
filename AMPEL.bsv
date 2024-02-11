@@ -2,8 +2,8 @@ package Ampel;
 
 import StmtFSM :: *;
 
-typedef enum {Red, RedYellow, Yellow, Green} AmpelState deriving (Bits, Eq);
-typedef enum {PRed, PGreen} PedestrianState deriving (Bits, Eq);
+typedef enum {Red, RedYellow, Yellow, Green} AmpelState deriving (Bits, Eq, FShow);
+typedef enum {PRed, PGreen} PedestrianState deriving (Bits, Eq, FShow);
 interface AmpelIf;
     (*always_enabled*)
     method Action request_pedestrian; 
@@ -18,42 +18,51 @@ module mkAmpel(AmpelIf);
     Array#(Reg#(Bool)) pedestrian_request <- mkCReg(2, False);
     Reg#(UInt#(8)) idle_counter <- mkRegU;
 
+    Reg#(Bool) startetFSM <- mkReg(False);
+
+    Reg#(Bool) handeldRequest <- mkReg(False);
+
     Stmt s = seq
         // State1
         action
             state[0] <= Red;
-            pedestrian_state[0] <= Red;
+            pedestrian_state[0] <= PRed;
             idle_counter <= 0;
         endaction
         // State2
         state[0] <= RedYellow;
         //State 3
 
-        while(idle_counter <= 5) action
+        action
             state[0] <= Green;
-            idle_counter <= idle_counter + 1
+            idle_counter <= 14;
         endaction
 
-        while(idle_counter <= 15 && !request_pedestrian[1]) action
-            idle_counter <= idle_counter + 1;
+        while(idle_counter > 0) action
+            state[0] <= Green;
+            if(pedestrian_request[1] && !handeldRequest && idle_counter > 5) action
+                idle_counter <= 5;
+                handeldRequest <= True;
+            endaction else action
+                idle_counter <= idle_counter - 1;
+            endaction
         endaction
-        if (request_pedestrian) seq
-            repeat (5) noAction;
-        endseq
-        
         state[0] <= Yellow;
         state[0] <= Red;
-        state[0] <= Green;
+        pedestrian_state[0] <= PGreen;
         repeat (10) noAction;
     endseq;
 
     FSM testFSM <- mkFSM(s);
-    rule startit;
+    rule startit(!startetFSM);
         testFSM.start;
+        startetFSM <= True;
+        handeldRequest <= False;
     endrule
     // When done restart
-    rule sequel (testFSM.done);
+    rule sequel (startetFSM && testFSM.done);
         testFSM.start;
+        pedestrian_request[0] <= False;
     endrule
 
 
@@ -61,7 +70,6 @@ module mkAmpel(AmpelIf);
         pedestrian_request[0] <= True;
     endmethod    
     method AmpelState get_state = state[1]._read;
-    method PedestrianState = pedestrian_state[1]._read;
-    mkAutoFSM(s);
-
+    method PedestrianState  get_pedestrian_state = pedestrian_state[1]._read;
+    endmodule
 endpackage    

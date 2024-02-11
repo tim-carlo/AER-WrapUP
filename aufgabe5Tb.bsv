@@ -6,60 +6,41 @@ package Aufgabe5Tb;
 
     module mkAufgabe5Tb(Empty);
         TX_ifc dut <- mkTX();
+        Bit#(8) data = 8'b10101010;
+        Reg#(int) counter <- mkReg(0); 
 
         Stmt s = seq
             $display("StartTB ...");
             action
                 let pin = dut.pin;
-                $display("Pin State: ", pin);
                 if(pin != 1) action
                     $display("Wrong Idle Output!");
                 endaction
             endaction
-            dut.data.put(8'b10101010);
+            dut.data.put(data);
+            action
+                $display("Waiting for Data to be sent ...");
+                await( dut.pin == 0 );
+            endaction
+
+            // Waiting for the start bit to be sent
             repeat (16) action
                 let pin = dut.pin;
                 if(pin != 0) action
                     $display("Wrong Data Notification!");
                 endaction
             endaction
-            repeat (16) action
-                let pin = dut.pin;
-                if(pin != 0) $display("1 Wrong Data expected: 0 got: ", pin);
-            endaction
-            repeat (16) action
-                let pin = dut.pin;
-                if(pin != 1) $display("2 Wrong Data expected: 1 got: ", pin);
-            endaction
-            repeat (16) action
-                let pin = dut.pin;
-                if(pin != 0) $display("3 Wrong Data expected: 0 got: ", pin);
-            endaction
-            repeat (16) action
-                let pin = dut.pin;
-                if(pin != 1) $display("4 Wrong Data expected: 1 got: ", pin);
-            endaction
-            repeat (16) action
-                let pin = dut.pin;
-                if(pin != 0) $display("5 Wrong Data expected: 0 got: ", pin);
-            endaction
-            repeat (16) action
-                let pin = dut.pin;
-                if(pin != 1) $display("6 Wrong Data expected: 1 got: ", pin);
-            endaction
-            repeat (16) action
-                let pin = dut.pin;
-                if(pin != 0) $display("7 Wrong Data expected: 0 got: ", pin);
-            endaction
-            repeat (16) action
-                let pin = dut.pin;
-                if(pin != 1) $display("8 Wrong Data expected: 1 got: ", pin);
-            endaction
-
+            for(counter <= 0; counter < 8; counter <= counter + 1) seq
+                repeat (16) action
+                    let pin = dut.pin;
+                    if(pin != data[counter]) $display("%d Wrong Data expected: %d got: %d", counter, data[counter],pin);
+                endaction
+            endseq
+                
             // Waiting for the last bit to be sent
             repeat (16) action
                 let pin = dut.pin;
-                if(pin != 1) $display("Wrong END Bit: 0 got: ", pin);
+                if(pin != 1) $display("Wrong END Bit: 1 got: ", pin);
             endaction
             
         endseq;
