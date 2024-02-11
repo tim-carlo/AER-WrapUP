@@ -49,6 +49,7 @@ package Aufgabe5Tb;
                 let pin = dut.pin;
                 if(pin != 1) action
                     $display("Wrong END Bit: 1 got: ", pin);
+                    mistakes <= mistakes + 1;
                 endaction    
             endaction
 

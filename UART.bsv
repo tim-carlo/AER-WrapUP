@@ -44,11 +44,14 @@ package UART;
                 counter <= counter + 1;
             end else begin
                 counter <= 0;
-                let pointerplus1 = pointer + 1;
-                pinData[0] <= currentData[pointerplus1];
-                pointer <= pointerplus1;
+                
                 if(pointer == 7) begin
                     states <= FINISH;
+                    pinData[0] <= 1;
+                end else begin
+                    let pointerplus1 = pointer + 1;
+                    pinData[0] <= currentData[pointerplus1];
+                    pointer <= pointerplus1;
                 end
             end
         endrule
@@ -59,7 +62,6 @@ package UART;
                 // Show the last for a while
                 pinData[0] <= 1;
             end else begin
-                pinData[0] <= 1;
                 counter <= 0;
                 pointer <= 0;
                 currentData <= 0;
