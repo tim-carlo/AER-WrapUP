@@ -30,7 +30,6 @@ module mkAmpel(AmpelIf);
         // State2
         state[0] <= RedYellow;
         //State 3
-
         action
             state[0] <= Green;
             idle_counter <= 14;

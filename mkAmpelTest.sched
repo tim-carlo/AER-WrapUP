@@ -1,0 +1,274 @@
+=== Generated schedule for mkAmpelTest ===
+
+Rule schedule
+-------------
+Rule: ampel_testFSM_start_reg__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_state_handle_abort
+Predicate: ampel_testFSM_abort.whas && ampel_testFSM_abort.wget &&
+	   ((! ampel_testFSM_start_wire.whas) ||
+	    (! ampel_testFSM_start_wire.wget))
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_state_fired__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_state_every
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_restart
+Predicate: ampel_testFSM_start_reg_1 && (! ampel_testFSM_state_fired) &&
+	   ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget))
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_l25c9
+Predicate: ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget) ||
+	    (ampel_testFSM_start_wire.whas &&
+	     ampel_testFSM_start_wire.wget)) &&
+	   ((ampel_testFSM_start_wire.whas && ampel_testFSM_start_wire.wget &&
+	     ((ampel_testFSM_abort.whas && ampel_testFSM_abort.wget) ||
+	      (ampel_testFSM_state_mkFSMstate.read == 4'd0))) ||
+	    (ampel_testFSM_jj_repeat_count.read[0] &&
+	     ampel_testFSM_start_wire.whas && ampel_testFSM_start_wire.wget &&
+	     ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd10)))
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_l31c14
+Predicate: ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	   (ampel_testFSM_state_mkFSMstate.read == 4'd1)
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_l33c9
+Predicate: ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	   (ampel_testFSM_state_mkFSMstate.read == 4'd2)
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_l38c33
+Predicate: (! (ampel_idle_counter == 8'd0)) &&
+	   ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	   ((ampel_testFSM_state_mkFSMstate.read == 4'd3) ||
+	    (ampel_testFSM_state_mkFSMstate.read == 4'd4))
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_l47c14
+Predicate: (ampel_idle_counter == 8'd0) &&
+	   ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	   ((ampel_testFSM_state_mkFSMstate.read == 4'd3) ||
+	    (ampel_testFSM_state_mkFSMstate.read == 4'd4))
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_l48c14
+Predicate: ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	   (ampel_testFSM_state_mkFSMstate.read == 4'd5)
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_l49c25
+Predicate: ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	   (ampel_testFSM_state_mkFSMstate.read == 4'd6)
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_r_init_l50c9
+Predicate: (! ampel_testFSM_jj_repeat_count.read[0]) &&
+	   ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	   (ampel_testFSM_state_mkFSMstate.read == 4'd7)
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_l50c29
+Predicate: ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget) ||
+	    (ampel_testFSM_start_wire.whas &&
+	     ampel_testFSM_start_wire.wget)) &&
+	   ((ampel_testFSM_jj_repeat_count.read[0] &&
+	     ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd7)) ||
+	    (((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd8)) ||
+	    (((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd9)) ||
+	    ((! ampel_testFSM_jj_repeat_count.read[0]) &&
+	     ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd10)))
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_action_ovlp_r_update_l50c9
+Predicate: ampel_testFSM_state_can_overlap &&
+	   ((ampel_testFSM_jj_repeat_count.read[0] &&
+	     ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd7)) ||
+	    (((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd8)) ||
+	    ((! ampel_testFSM_jj_repeat_count.read[0]) &&
+	     ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd10)))
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_idle_l23c14
+Predicate: ampel_testFSM_jj_repeat_count.read[0] &&
+	   ((! ampel_testFSM_start_wire.whas) ||
+	    (! ampel_testFSM_start_wire.wget)) &&
+	   ((! ampel_testFSM_abort.whas) || (! ampel_testFSM_abort.wget)) &&
+	   (ampel_testFSM_state_mkFSMstate.read == 4'd10)
+Blocking rules: (none)
+ 
+Rule: ampel_testFSM_fsm_start
+Predicate: ((ampel_testFSM_abort.whas && ampel_testFSM_abort.wget) ||
+	    (ampel_testFSM_state_mkFSMstate.read == 4'd0) ||
+	    (ampel_testFSM_jj_repeat_count.read[0] &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd10))) &&
+	   ((! ampel_testFSM_start_reg_1) || ampel_testFSM_state_fired) &&
+	   ampel_testFSM_start_reg
+Blocking rules: (none)
+ 
+Rule: ampel_startit
+Predicate: ((ampel_testFSM_abort.whas && ampel_testFSM_abort.wget) ||
+	    (ampel_testFSM_state_mkFSMstate.read == 4'd0) ||
+	    (ampel_testFSM_jj_repeat_count.read[0] &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd10))) &&
+	   ((! ampel_testFSM_start_reg_1) || ampel_testFSM_state_fired) &&
+	   (! ampel_testFSM_start_reg) &&
+	   (! ampel_startetFSM)
+Blocking rules: (none)
+ 
+Rule: ampel_sequel
+Predicate: ((ampel_testFSM_abort.whas && ampel_testFSM_abort.wget) ||
+	    (ampel_testFSM_state_mkFSMstate.read == 4'd0) ||
+	    (ampel_testFSM_jj_repeat_count.read[0] &&
+	     (ampel_testFSM_state_mkFSMstate.read == 4'd10))) &&
+	   ((! ampel_testFSM_start_reg_1) || ampel_testFSM_state_fired) &&
+	   (! ampel_testFSM_start_reg) &&
+	   ampel_startetFSM
+Blocking rules: (none)
+ 
+Rule: start_reg__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: state_handle_abort
+Predicate: abort.whas && abort.wget &&
+	   ((! start_wire.whas) || (! start_wire.wget))
+Blocking rules: (none)
+ 
+Rule: state_fired__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: state_every
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: restart
+Predicate: start_reg_1 && (! state_fired) &&
+	   ((! abort.whas) || (! abort.wget))
+Blocking rules: (none)
+ 
+Rule: action_l10c18
+Predicate: start_wire.whas && start_wire.wget &&
+	   ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0))
+Blocking rules: (none)
+ 
+Rule: action_l12c26
+Predicate: ((! abort.whas) || (! abort.wget)) &&
+	   ((state_mkFSMstate.read == 3'd1) ||
+	    (state_mkFSMstate.read == 3'd2))
+Blocking rules: (none)
+ 
+Rule: fsm_start
+Predicate: ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0)) &&
+	   ((! start_reg_1) || state_fired) &&
+	   start_reg
+Blocking rules: (none)
+ 
+Rule: auto_start
+Predicate: ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0)) &&
+	   ((! start_reg_1) || state_fired) &&
+	   (! start_reg) &&
+	   (! running)
+Blocking rules: (none)
+ 
+Rule: auto_finish
+Predicate: running &&
+	   ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0)) &&
+	   ((! start_reg_1) || state_fired) &&
+	   (! start_reg)
+Blocking rules: (none)
+ 
+Rule: __me_check_5
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_6
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_7
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_8
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_9
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_10
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_11
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_12
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_24
+Predicate: True
+Blocking rules: (none)
+ 
+Logical execution order: restart,
+			 fsm_start,
+			 action_l10c18,
+			 auto_start,
+			 auto_finish,
+			 ampel_startit,
+			 ampel_sequel,
+			 ampel_testFSM_restart,
+			 ampel_testFSM_action_l31c14,
+			 ampel_testFSM_action_l33c9,
+			 ampel_testFSM_action_l38c33,
+			 ampel_testFSM_action_l47c14,
+			 ampel_testFSM_action_l48c14,
+			 ampel_testFSM_action_l49c25,
+			 ampel_testFSM_action_r_init_l50c9,
+			 ampel_testFSM_action_ovlp_r_update_l50c9,
+			 ampel_testFSM_fsm_start,
+			 ampel_testFSM_action_l25c9,
+			 action_l12c26,
+			 __me_check_24,
+			 ampel_testFSM_action_l50c29,
+			 __me_check_5,
+			 __me_check_6,
+			 __me_check_7,
+			 __me_check_8,
+			 __me_check_9,
+			 __me_check_10,
+			 __me_check_11,
+			 __me_check_12,
+			 ampel_testFSM_idle_l23c14,
+			 ampel_testFSM_start_reg__dreg_update,
+			 ampel_testFSM_state_handle_abort,
+			 ampel_testFSM_state_every,
+			 ampel_testFSM_state_fired__dreg_update,
+			 start_reg__dreg_update,
+			 state_handle_abort,
+			 state_every,
+			 state_fired__dreg_update
+
+===========================================
