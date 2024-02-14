@@ -1,0 +1,243 @@
+=== Generated schedule for mkFSMTestbench ===
+
+Rule schedule
+-------------
+Rule: dut_adder_compute
+Predicate: dut_adder_inputFIFO.i_notEmpty && dut_adder_outputFIFO.i_notFull
+Blocking rules: (none)
+ 
+Rule: dut_mul_compute
+Predicate: dut_mul_inputFIFO.i_notEmpty && dut_mul_outputFIFO.i_notFull
+Blocking rules: (none)
+ 
+Rule: dut_sqrt_compute
+Predicate: dut_sqrt_inputFIFO.i_notEmpty && dut_sqrt_outputFIFO.i_notFull
+Blocking rules: (none)
+ 
+Rule: dut_start_reg__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: dut_state_handle_abort
+Predicate: dut_abort.whas && dut_abort.wget &&
+	   ((! dut_start_wire.whas) || (! dut_start_wire.wget))
+Blocking rules: (none)
+ 
+Rule: dut_state_fired__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: dut_state_every
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: dut_restart
+Predicate: dut_start_reg_1 && (! dut_state_fired) &&
+	   ((! dut_abort.whas) || (! dut_abort.wget))
+Blocking rules: (none)
+ 
+Rule: dut_action_l22c13
+Predicate: dut_incoming.i_notEmpty && dut_adder_inputFIFO.i_notFull &&
+	   dut_start_wire.whas && dut_start_wire.wget &&
+	   ((dut_abort.whas && dut_abort.wget) ||
+	    (dut_state_mkFSMstate.read == 3'd0) ||
+	    (dut_state_mkFSMstate.read == 3'd5))
+Blocking rules: (none)
+ 
+Rule: dut_action_l29c13
+Predicate: dut_adder_inputFIFO.i_notFull && dut_adder_outputFIFO.i_notEmpty &&
+	   ((! dut_abort.whas) || (! dut_abort.wget)) &&
+	   (dut_state_mkFSMstate.read == 3'd1)
+Blocking rules: (none)
+ 
+Rule: dut_action_l35c13
+Predicate: dut_adder_outputFIFO.i_notEmpty && dut_mul_inputFIFO.i_notFull &&
+	   ((! dut_abort.whas) || (! dut_abort.wget)) &&
+	   (dut_state_mkFSMstate.read == 3'd2)
+Blocking rules: (none)
+ 
+Rule: dut_action_l40c13
+Predicate: dut_adder_inputFIFO.i_notFull && dut_mul_outputFIFO.i_notEmpty &&
+	   ((! dut_abort.whas) || (! dut_abort.wget)) &&
+	   (dut_state_mkFSMstate.read == 3'd3)
+Blocking rules: (none)
+ 
+Rule: dut_action_l45c13
+Predicate: dut_adder_outputFIFO.i_notEmpty && dut_sqrt_inputFIFO.i_notFull &&
+	   ((! dut_abort.whas) || (! dut_abort.wget)) &&
+	   (dut_state_mkFSMstate.read == 3'd4)
+Blocking rules: (none)
+ 
+Rule: dut_idle_l21c18
+Predicate: ((! dut_start_wire.whas) || (! dut_start_wire.wget)) &&
+	   ((! dut_abort.whas) || (! dut_abort.wget)) &&
+	   (dut_state_mkFSMstate.read == 3'd5)
+Blocking rules: (none)
+ 
+Rule: dut_fsm_start
+Predicate: ((dut_abort.whas && dut_abort.wget) ||
+	    (dut_state_mkFSMstate.read == 3'd0) ||
+	    (dut_state_mkFSMstate.read == 3'd5)) &&
+	   ((! dut_start_reg_1) || dut_state_fired) &&
+	   dut_start_reg
+Blocking rules: (none)
+ 
+Rule: dut_auto_start
+Predicate: ((dut_abort.whas && dut_abort.wget) ||
+	    (dut_state_mkFSMstate.read == 3'd0) ||
+	    (dut_state_mkFSMstate.read == 3'd5)) &&
+	   ((! dut_start_reg_1) || dut_state_fired) &&
+	   (! dut_start_reg) &&
+	   (! dut_running)
+Blocking rules: (none)
+ 
+Rule: dut_auto_finish
+Predicate: dut_running &&
+	   ((dut_abort.whas && dut_abort.wget) ||
+	    (dut_state_mkFSMstate.read == 3'd0) ||
+	    (dut_state_mkFSMstate.read == 3'd5)) &&
+	   ((! dut_start_reg_1) || dut_state_fired) &&
+	   (! dut_start_reg)
+Blocking rules: (none)
+ 
+Rule: start_reg__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: state_handle_abort
+Predicate: abort.whas && abort.wget &&
+	   ((! start_wire.whas) || (! start_wire.wget))
+Blocking rules: (none)
+ 
+Rule: state_fired__dreg_update
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: state_every
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: restart
+Predicate: start_reg_1 && (! state_fired) &&
+	   ((! abort.whas) || (! abort.wget))
+Blocking rules: (none)
+ 
+Rule: action_l11c13
+Predicate: start_wire.whas && start_wire.wget &&
+	   ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0) ||
+	    (state_mkFSMstate.read == 3'd4))
+Blocking rules: (none)
+ 
+Rule: action_l12c16
+Predicate: dut_incoming.i_notFull &&
+	   ((! abort.whas) || (! abort.wget)) &&
+	   (state_mkFSMstate.read == 3'd1)
+Blocking rules: (none)
+ 
+Rule: action_l13c13
+Predicate: dut_sqrt_outputFIFO.i_notEmpty &&
+	   ((! abort.whas) || (! abort.wget)) &&
+	   (state_mkFSMstate.read == 3'd2)
+Blocking rules: (none)
+ 
+Rule: action_l17c13
+Predicate: ((! abort.whas) || (! abort.wget)) &&
+	   (state_mkFSMstate.read == 3'd3)
+Blocking rules: (none)
+ 
+Rule: idle_l10c18
+Predicate: ((! start_wire.whas) || (! start_wire.wget)) &&
+	   ((! abort.whas) || (! abort.wget)) &&
+	   (state_mkFSMstate.read == 3'd4)
+Blocking rules: (none)
+ 
+Rule: fsm_start
+Predicate: ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0) ||
+	    (state_mkFSMstate.read == 3'd4)) &&
+	   ((! start_reg_1) || state_fired) &&
+	   start_reg
+Blocking rules: (none)
+ 
+Rule: auto_start
+Predicate: ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0) ||
+	    (state_mkFSMstate.read == 3'd4)) &&
+	   ((! start_reg_1) || state_fired) &&
+	   (! start_reg) &&
+	   (! running)
+Blocking rules: (none)
+ 
+Rule: auto_finish
+Predicate: running &&
+	   ((abort.whas && abort.wget) || (state_mkFSMstate.read == 3'd0) ||
+	    (state_mkFSMstate.read == 3'd4)) &&
+	   ((! start_reg_1) || state_fired) &&
+	   (! start_reg)
+Blocking rules: (none)
+ 
+Rule: __me_check_8
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_9
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_10
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_11
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_22
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_23
+Predicate: True
+Blocking rules: (none)
+ 
+Rule: __me_check_24
+Predicate: True
+Blocking rules: (none)
+ 
+Logical execution order: restart,
+			 action_l12c16,
+			 action_l13c13,
+			 action_l17c13,
+			 __me_check_23,
+			 __me_check_24,
+			 fsm_start,
+			 action_l11c13,
+			 __me_check_22,
+			 idle_l10c18,
+			 auto_start,
+			 auto_finish,
+			 dut_restart,
+			 dut_action_l29c13,
+			 dut_action_l35c13,
+			 dut_action_l40c13,
+			 dut_action_l45c13,
+			 __me_check_9,
+			 __me_check_10,
+			 __me_check_11,
+			 dut_fsm_start,
+			 dut_action_l22c13,
+			 __me_check_8,
+			 dut_idle_l21c18,
+			 dut_auto_start,
+			 dut_auto_finish,
+			 dut_adder_compute,
+			 dut_mul_compute,
+			 dut_sqrt_compute,
+			 dut_start_reg__dreg_update,
+			 dut_state_handle_abort,
+			 dut_state_every,
+			 dut_state_fired__dreg_update,
+			 start_reg__dreg_update,
+			 state_handle_abort,
+			 state_every,
+			 state_fired__dreg_update
+
+==============================================

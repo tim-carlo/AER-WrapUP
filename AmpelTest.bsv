@@ -9,6 +9,8 @@ package AmpelTest;
         Stmt s = seq
             ampel.request_pedestrian();
 
+            
+
             while (True) action
                 let pedestrian = ampel.get_pedestrian_state;
                 let ampelState = ampel.get_state;
